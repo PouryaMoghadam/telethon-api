@@ -132,3 +132,8 @@ dmypy.json
 .idea
 .idea/*
 .idea/*.*
+
+# Session Files
+*.session
+*.session*
+*.session.*
