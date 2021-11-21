@@ -37,9 +37,8 @@ async def send_code_request():
     return await client.send_code_request(phone=phone)
 
 
-async def client_sign_in(user_code):
-    print(user_code)
+async def client_sign_in(user_code, hash_code):
     client = await create_client()
     await client.connect()
-    result = await client.sign_in(phone=phone, code=user_code)
+    result = await client.sign_in(phone=phone, code=user_code, phone_code_hash=hash_code)
     return result

@@ -7,6 +7,7 @@ router = APIRouter()
 
 class SignIn(BaseModel):
     code: str
+    phone_hash_code: str
 
 
 @router.get('/private/profile')
@@ -34,4 +35,4 @@ async def send_sign_in_code():
 @router.post('/sign-in')
 async def user_sign_in(sign_in: SignIn):
     data = dict(sign_in)
-    return await client_sign_in(user_code=data['code'])
+    return await client_sign_in(user_code=data['code'], hash_code=data['phone_hash_code'])
