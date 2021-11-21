@@ -42,6 +42,7 @@ async def get_user_channels_list():
 async def get_user_channel_info(channel: ChannelBaseModel):
     data = dict(channel)
     client = await create_client()
+    await client.disconnect()
     await client.connect()
     async with client:
         try:
@@ -57,6 +58,20 @@ async def get_user_channel_info(channel: ChannelBaseModel):
                 add_offset=data['add_offset'],
                 hash=data['hash']))
             for msg in posts.messages:
+                media = None
+                if msg.media is not None:
+                    if type(msg.media).__name__ == 'MessageMediaDocument':
+                        media = {
+                            'type': 'video',
+                            'id': msg.media.document.id,
+                            'access_hash': msg.media.document.access_hash
+                        }
+                    if type(msg.media).__name__ == 'MessageMediaPhoto':
+                        media = {
+                            'type': 'photo',
+                            'id': msg.media.photo.id,
+                            'access_hash': msg.media.photo.access_hash
+                        }
                 data = {
                     'id': msg.id,
                     'channel_id': msg.peer_id.channel_id,
@@ -65,6 +80,7 @@ async def get_user_channel_info(channel: ChannelBaseModel):
                     'views': msg.views,
                     'forwards': msg.forwards,
                     'replies': msg.replies,
+                    'media': media
                 }
                 messages.append(data)
             await client.disconnect()
