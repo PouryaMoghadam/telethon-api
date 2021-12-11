@@ -2,9 +2,9 @@ import uvicorn
 from fastapi import FastAPI, Request
 from starlette.responses import JSONResponse
 from starlette.middleware.cors import CORSMiddleware
-from app.core.config import settings
-from app.core.client import check_client_authorized
-from app.api.router import api_router
+from core.config import settings
+from core.client import check_client_authorized
+from api.router import api_router
 
 # Initial Base APP Instance
 app = FastAPI(title=settings.PROJECT_NAME)

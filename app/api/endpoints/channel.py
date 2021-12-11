@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from pydantic import BaseModel
 from typing import Optional
 from telethon.tl.functions.messages import (GetHistoryRequest)
-from app.core.client import create_client
+from core.client import create_client
 
 router = APIRouter()
 

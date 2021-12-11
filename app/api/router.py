@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from app.api.endpoints import system, user, channel
+from api.endpoints import system, user, channel
 
 
 api_router = APIRouter()

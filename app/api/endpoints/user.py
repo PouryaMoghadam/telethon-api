@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
-from app.core.client import create_client, send_code_request, client_sign_in, login_with_qr
+from core.client import create_client, send_code_request, client_sign_in, login_with_qr
 
 router = APIRouter()
 

@@ -1,5 +1,5 @@
 from dotenv import dotenv_values
-from telethon import TelegramClient, functions
+from telethon import TelegramClient
 
 client_info = dotenv_values('.env')
 client_dict = dict(client_info)
